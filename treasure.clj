@@ -2,6 +2,7 @@
 (require '[clojure.string :as str])
 (use '[clojure.string :as str :only [split]])
 
+;; Read the input Map
 (defn readFile []
   (def stringMap (slurp "map.txt"))
   (println "This is my challenge:\n")
@@ -13,11 +14,6 @@
 ;;(println line-words1)
 
 (def newMap (-> line-words1 ))
-;;(println (str (get-in line-words1 [0 0])))
-;;(def line-words1 (vec (mapv #(str/split %1 #"") linescust)))
-;;(doseq [item  (line-words1)])
-;; (println line-words1)
-;;(print  ((line-words1 1)1) )
 (def path (vector))
 (def p-map (sorted-map))
 (def row-cnt (count line-words1))
@@ -35,7 +31,7 @@
     :else "false"))
 
 
-
+;; Backtracking Algorithm Implementation
 (defn srch [mapV r c]
   (cond
     (= (str (get-in mapV [r c])) "@") (do (swap! flg inc) (println "\nWoo hoo, I found the treasure :-)\n"))
@@ -61,6 +57,7 @@
   (or (= @flg 0) (= (str (get-in newMap [0 0])) "#") ) (println "\nUh oh, I could not find the treasure :-(\n")
   )
 
+;;Printing the Path traversed
 (def l (atom 0))
 (def l2 (atom 0))
 (defn prnt []
